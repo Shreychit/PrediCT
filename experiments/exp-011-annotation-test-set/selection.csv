@@ -1,0 +1,11 @@
+order,scan_id,category,double_read,how_chosen
+1,c1167b5379c9,typical_median,yes,random draw (seed 2026) from predicted epi P40-P60
+2,0e0bfac97f0b,difficult,yes,only expert-scored hard case (quality score 3; pericardium not traceable; streak artifact)
+3,4d8b16eea37d,typical_low,no,random draw (seed 2026) from predicted epi P15-P35
+4,cb2848d3350f,typical_high,no,random draw (seed 2026) from predicted epi P65-P85
+5,ee544e4ab1d5,difficult,no,low-fat (<P10) shortlist; pericardium indistinct on visual review
+6,fb13c1ef286e,typical_median,no,random draw (seed 2026) from predicted epi P40-P60
+7,7abd2b882996,typical_low,no,random draw (seed 2026) from predicted epi P15-P35
+8,ccff0d03acbb,typical_high,no,random draw (seed 2026) from predicted epi P65-P85
+9,9f11dcf436bf,difficult,no,low-fat (<P10) shortlist; pericardium indistinct on visual review
+10,fbc6a519f1bb,difficult,no,low-fat (<P10) shortlist; pericardium indistinct on visual review

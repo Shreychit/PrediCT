@@ -1,0 +1,52 @@
+experiment:
+  id: exp-014
+  name: final-postproc
+  description: Last pre-registered post-processing round before any retraining — better pericardium (shape regularization + 3-estimate vote), fat median filter, lung-bounded mediastinum, 3-fold+TTA ensemble
+  date_started: 2026-10-28
+  locked: 2026-10-28   # variants + parameters frozen before any Visual Lab scoring; scored on VL exactly once
+
+# Rules (guardrail, progress.md): every parameter comes from a paper or the existing pipeline, none from Visual Lab.
+# Develop/inspect on COCA QC (10 Kettering scans) first; then ONE Visual Lab run; report every variant.
+# Attempts on Visual Lab so far: exp-013 = 6 variants. This experiment adds the variants below; total is disclosed.
+
+data:
+  hu_range: [-200, -30]          # ADR-001
+  shell_mm: 10                   # shipped para shell (src/inference/apply_para_shell.py)
+  # lungs = TS trunk_cavities "thoracic_cavity" (pleural space; mean HU -650..-800 checked on 3 scans). Chosen over an
+  # HU<-400 threshold because on VL's narrow FOV ~40% of air voxels are outside the patient. No parameter.
+  median_kernel: [3, 3]          # Commandeur 2018 (ref3): 3x3 per-slice median on the fat mask
+  predictions:
+    fold0: data/visual_lab_nifti/nnunet_pred/                 # exp-008 (used in exp-012/013)
+    ensemble: data/visual_lab_nifti/nnunet_pred_ens3_tta/     # NEW: folds 0-2, TTA on (nnUNetv2_predict default)
+  sam2:
+    model: facebook/sam2.1-hiera-base-plus    # same as exp-005 / COCA pericardium_masks
+    box_pad_mm: 5.6                           # COCA used 8 px at 0.7 mm; VL px pad = 5.6 mm / spacing
+    window: [-160, 240]
+    min_heart_vox_mm2: 98                     # COCA 200 px at 0.7 mm -> scaled by pixel area on VL
+
+# REVISED after COCA QC v1 (2026-10-28, before any VL scoring): per-slice CONVEX HULLS overreached at the cardiac base
+# (posterior mediastinal fat and stomach/bowel gas pulled into "epi"; lung hull spanned the upper abdomen at the diaphragm).
+# Hull replaced by per-slice hole filling (what ref1's morphological layer does); TS abdominal_cavity (A) subtracted
+# everywhere (mediastinum lies above the diaphragm). Still no tuned parameter. Lung hull kept only for Med_lung, which is
+# bounded by ~A. Variant W2 name kept ("hull") for traceability = P_ts filled.
+# Cleanup: P_ts, P_sam and (epi ∪ heart) are reduced to their largest 3D connected component first (no parameter).
+# Pericardium estimates (all per-slice operations in the axial plane), all minus A:
+#   P_ts   = TotalSegmentator trunk_cavities pericardium (exp-013)
+#   P_hull = per-slice fill-holes of largest-cc(P_ts)                      (ref1 morphological layer, ref4)
+#   P_sam  = per-slice fill-holes of largest-cc(SAM2 pericardium)          (exp-005 pipeline)
+#   P_nn   = per-slice fill-holes of largest-cc(nnU-Net epi ∪ TS heart)    (sac implied by the model)
+#   P_vote = voxels in >= 2 of {P_hull, P_sam, P_nn}
+# Mediastinum:
+#   Med_lung = per-slice convex hull of the lungs (TS thoracic_cavity) minus lungs, P_vote and A (Rodrigues: "mediastinal space")
+# fat = HU in hu_range; fat_med = fat after 3x3 median.  pred = ENSEMBLE unless stated.
+variants:
+  W0_v4_fold0:     {epi: "fat & P_ts",      para: "(pred_fold0 fg) & (M | shell(P_ts)) & ~P_ts"}      # exp-013 V4, reference
+  W1_v4_ens:       {epi: "fat & P_ts",      para: "(pred fg) & (M | shell(P_ts)) & ~P_ts"}            # isolates the ensemble (idea 4)
+  W2_hull:         {epi: "fat & P_hull",    para: "(pred fg) & (M | shell(P_hull)) & ~P_hull"}        # idea 1
+  W3_vote:         {epi: "fat & P_vote",    para: "(pred fg) & (M | shell(P_vote)) & ~P_vote"}        # idea 2
+  W4_vote_median:  {epi: "fat_med & P_vote", para: "(pred fg) & fat_med & (M | shell(P_vote)) & ~P_vote"}  # idea 3
+  W5_lungmed:      {epi: "fat & P_vote",    para: "fat & Med_lung"}                                   # idea 5
+  W6_lungmed_shell: {epi: "fat & P_vote",   para: "fat & (Med_lung | shell(P_vote)) & ~P_vote"}       # idea 6
+
+metrics: [dice_epi, dice_para, dice_tat, recall, precision, epi_vol_r, para_vol_r]
+seed: 42

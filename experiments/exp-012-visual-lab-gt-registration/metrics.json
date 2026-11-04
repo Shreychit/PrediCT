@@ -1,0 +1,351 @@
+{
+  "summary": {
+    "gt_fat_at_label": 0.954,
+    "epi_dice_old": 0.183,
+    "epi_dice_new": 0.713,
+    "para_dice_old": 0.114,
+    "para_dice_new": 0.319
+  },
+  "per_patient": {
+    "ACel": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        1,
+        12
+      ],
+      "shift_votes": "13/13",
+      "gt_fat_at_label": 0.996,
+      "epi_dice_old": 0.416,
+      "epi_dice_new": 0.702,
+      "para_dice_old": 0.211,
+      "para_dice_new": 0.324,
+      "gt_epi_mL_new": 122.9,
+      "pred_epi_mL": 167.2
+    },
+    "AEdu": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -8,
+        18
+      ],
+      "shift_votes": "12/12",
+      "gt_fat_at_label": 1.0,
+      "epi_dice_old": 0.208,
+      "epi_dice_new": 0.699,
+      "para_dice_old": 0.194,
+      "para_dice_new": 0.414,
+      "gt_epi_mL_new": 55.5,
+      "pred_epi_mL": 84.6
+    },
+    "AFre": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -20,
+        6
+      ],
+      "shift_votes": "15/15",
+      "gt_fat_at_label": 0.996,
+      "epi_dice_old": 0.2,
+      "epi_dice_new": 0.602,
+      "para_dice_old": 0.186,
+      "para_dice_new": 0.359,
+      "gt_epi_mL_new": 107.5,
+      "pred_epi_mL": 136.6
+    },
+    "AMar": {
+      "spacing_mm": 0.302734375,
+      "scale": 0.865,
+      "z_offset": 0,
+      "shift_px": [
+        -42,
+        17
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.95,
+      "epi_dice_old": 0.157,
+      "epi_dice_new": 0.77,
+      "para_dice_old": 0.188,
+      "para_dice_new": 0.438,
+      "gt_epi_mL_new": 71.4,
+      "pred_epi_mL": 89.6
+    },
+    "AXav": {
+      "spacing_mm": 0.390625,
+      "scale": 1.1161,
+      "z_offset": 0,
+      "shift_px": [
+        82,
+        50
+      ],
+      "shift_votes": "11/15",
+      "gt_fat_at_label": 0.882,
+      "epi_dice_old": 0.061,
+      "epi_dice_new": 0.779,
+      "para_dice_old": 0.037,
+      "para_dice_new": 0.353,
+      "gt_epi_mL_new": 166.1,
+      "pred_epi_mL": 170.3
+    },
+    "CFer": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        19,
+        15
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.997,
+      "epi_dice_old": 0.3,
+      "epi_dice_new": 0.723,
+      "para_dice_old": 0.202,
+      "para_dice_new": 0.408,
+      "gt_epi_mL_new": 184.8,
+      "pred_epi_mL": 163.1
+    },
+    "CLis": {
+      "spacing_mm": 0.34375,
+      "scale": 0.9993,
+      "z_offset": 0,
+      "shift_px": [
+        25,
+        30
+      ],
+      "shift_votes": "12/12",
+      "gt_fat_at_label": 1.0,
+      "epi_dice_old": 0.083,
+      "epi_dice_new": 0.773,
+      "para_dice_old": 0.05,
+      "para_dice_new": 0.386,
+      "gt_epi_mL_new": 60.3,
+      "pred_epi_mL": 69.5
+    },
+    "DLag": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        16,
+        33
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.987,
+      "epi_dice_old": 0.136,
+      "epi_dice_new": 0.599,
+      "para_dice_old": 0.132,
+      "para_dice_new": 0.384,
+      "gt_epi_mL_new": 108.2,
+      "pred_epi_mL": 146.9
+    },
+    "DSan": {
+      "spacing_mm": 0.365234375,
+      "scale": 1.0435,
+      "z_offset": 0,
+      "shift_px": [
+        -21,
+        28
+      ],
+      "shift_votes": "12/12",
+      "gt_fat_at_label": 0.94,
+      "epi_dice_old": 0.212,
+      "epi_dice_new": 0.748,
+      "para_dice_old": 0.086,
+      "para_dice_new": 0.226,
+      "gt_epi_mL_new": 103.1,
+      "pred_epi_mL": 119.4
+    },
+    "DSil": {
+      "spacing_mm": 0.271484375,
+      "scale": 0.7757,
+      "z_offset": 0,
+      "shift_px": [
+        -11,
+        -10
+      ],
+      "shift_votes": "17/17",
+      "gt_fat_at_label": 0.886,
+      "epi_dice_old": 0.091,
+      "epi_dice_new": 0.726,
+      "para_dice_old": 0.02,
+      "para_dice_new": 0.254,
+      "gt_epi_mL_new": 32.6,
+      "pred_epi_mL": 35.1
+    },
+    "EGra": {
+      "spacing_mm": 0.35546875,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -8,
+        -3
+      ],
+      "shift_votes": "16/16",
+      "gt_fat_at_label": 1.0,
+      "epi_dice_old": 0.395,
+      "epi_dice_new": 0.734,
+      "para_dice_old": 0.15,
+      "para_dice_new": 0.239,
+      "gt_epi_mL_new": 78.5,
+      "pred_epi_mL": 106.3
+    },
+    "FGas": {
+      "spacing_mm": 0.29296875,
+      "scale": 0.8371,
+      "z_offset": 0,
+      "shift_px": [
+        -44,
+        1
+      ],
+      "shift_votes": "14/16",
+      "gt_fat_at_label": 0.88,
+      "epi_dice_old": 0.088,
+      "epi_dice_new": 0.777,
+      "para_dice_old": 0.023,
+      "para_dice_new": 0.145,
+      "gt_epi_mL_new": 43.6,
+      "pred_epi_mL": 56.1
+    },
+    "FPiq": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -50,
+        -6
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.998,
+      "epi_dice_old": 0.053,
+      "epi_dice_new": 0.718,
+      "para_dice_old": 0.136,
+      "para_dice_new": 0.284,
+      "gt_epi_mL_new": 56.1,
+      "pred_epi_mL": 66.5
+    },
+    "ISou": {
+      "spacing_mm": 0.28125,
+      "scale": 0.8036,
+      "z_offset": 0,
+      "shift_px": [
+        -10,
+        21
+      ],
+      "shift_votes": "13/13",
+      "gt_fat_at_label": 0.942,
+      "epi_dice_old": 0.154,
+      "epi_dice_new": 0.707,
+      "para_dice_old": 0.108,
+      "para_dice_new": 0.23,
+      "gt_epi_mL_new": 101.5,
+      "pred_epi_mL": 83.6
+    },
+    "JFul": {
+      "spacing_mm": 0.306640625,
+      "scale": 0.8761,
+      "z_offset": 1,
+      "shift_px": [
+        -51,
+        -5
+      ],
+      "shift_votes": "13/15",
+      "gt_fat_at_label": 0.896,
+      "epi_dice_old": 0.096,
+      "epi_dice_new": 0.579,
+      "para_dice_old": 0.104,
+      "para_dice_new": 0.396,
+      "gt_epi_mL_new": 60.2,
+      "pred_epi_mL": 107.4
+    },
+    "JMir": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -32,
+        -15
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 1.0,
+      "epi_dice_old": 0.2,
+      "epi_dice_new": 0.641,
+      "para_dice_old": 0.111,
+      "para_dice_new": 0.351,
+      "gt_epi_mL_new": 94.0,
+      "pred_epi_mL": 121.5
+    },
+    "MPai": {
+      "spacing_mm": 0.263671875,
+      "scale": 0.7533,
+      "z_offset": 0,
+      "shift_px": [
+        -32,
+        -13
+      ],
+      "shift_votes": "17/17",
+      "gt_fat_at_label": 0.922,
+      "epi_dice_old": 0.245,
+      "epi_dice_new": 0.779,
+      "para_dice_old": 0.052,
+      "para_dice_new": 0.18,
+      "gt_epi_mL_new": 95.5,
+      "pred_epi_mL": 108.7
+    },
+    "MSil": {
+      "spacing_mm": 0.3515625,
+      "scale": 1.0,
+      "z_offset": 0,
+      "shift_px": [
+        -62,
+        21
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.993,
+      "epi_dice_old": 0.077,
+      "epi_dice_new": 0.612,
+      "para_dice_old": 0.11,
+      "para_dice_new": 0.373,
+      "gt_epi_mL_new": 110.8,
+      "pred_epi_mL": 161.4
+    },
+    "TJes": {
+      "spacing_mm": 0.302734375,
+      "scale": 0.865,
+      "z_offset": 0,
+      "shift_px": [
+        -26,
+        -9
+      ],
+      "shift_votes": "14/14",
+      "gt_fat_at_label": 0.91,
+      "epi_dice_old": 0.285,
+      "epi_dice_new": 0.791,
+      "para_dice_old": 0.095,
+      "para_dice_new": 0.291,
+      "gt_epi_mL_new": 51.4,
+      "pred_epi_mL": 68.8
+    },
+    "VMar": {
+      "spacing_mm": 0.28515625,
+      "scale": 0.8147,
+      "z_offset": 0,
+      "shift_px": [
+        -35,
+        11
+      ],
+      "shift_votes": "15/15",
+      "gt_fat_at_label": 0.913,
+      "epi_dice_old": 0.212,
+      "epi_dice_new": 0.793,
+      "para_dice_old": 0.086,
+      "para_dice_new": 0.339,
+      "gt_epi_mL_new": 76.8,
+      "pred_epi_mL": 79.6
+    }
+  }
+}

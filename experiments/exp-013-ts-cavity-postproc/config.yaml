@@ -1,0 +1,35 @@
+experiment:
+  id: exp-013
+  name: ts-cavity-postproc
+  description: Bound nnU-Net epi/para predictions with TotalSegmentator trunk_cavities (pericardium, mediastinum) masks
+  date_started: 2026-10-28
+
+data:
+  ts_masks: data/ts_cavities/{vl,coca}/<id>/{pericardium,mediastinum}.nii.gz   # TS 2.13.0 -ta trunk_cavities, Perlmutter job 60383935
+  visual_lab:
+    ct_full: data/visual_lab_nifti/<p>.nii.gz          # grid TS ran on
+    ct_crop: data/visual_lab_nifti/nnunet_input/VL_<p>_0000.nii.gz
+    pred: data/visual_lab_nifti/nnunet_pred/VL_<p>.nii.gz       # unchanged exp-008 predictions (same as exp-012)
+    gt: data/visual_lab_nifti/nnunet_gt_registered/VL_<p>.nii.gz  # exp-012 registered GT
+  coca_qc:
+    ids_from: experiments/exp-011-annotation-test-set/selection.csv   # the 10 Kettering test-set scans
+    ct: data/COCA_dataset/nnunet_input/<id>_0000.nii.gz
+    pred: data/COCA_dataset/nnunet_pred_ensemble/<id>.nii.gz
+  hu_range: [-200, -30]   # ADR-001
+  shell_mm: 10            # same as src/inference/apply_para_shell.py
+
+# Pre-registered BEFORE scoring on Visual Lab (guardrail in progress.md). All are reported; none is tuned on VL.
+# pred_epi / pred_para = nnU-Net labels 1 / 2; fat = HU in hu_range; P = TS pericardium; M = TS mediastinum.
+variants:
+  V0_baseline:  {epi: "pred_epi",       para: "pred_para"}
+  V1_para_clip: {epi: "pred_epi",       para: "pred_para & M"}
+  V2A_bounded:  {epi: "pred_epi & P",   para: "(pred_para | pred_epi) & M & ~P"}   # epi spilling outside P but inside M becomes para
+  V2B_fat_in_P: {epi: "fat & P",        para: "(pred_para | pred_epi) & M & ~P"}   # textbook definition (Rodrigues, Commandeur, Oikonomou 2026)
+  V3_ts_only:   {epi: "fat & P",        para: "fat & M & ~P"}                       # no nnU-Net at all — reference
+  # Added AFTER the V0–V3 Visual Lab run (disclosed in README): diagnostic showed 46% of GT para lies outside
+  # TS P|M, mostly in a thin rim just outside P. Uses the pre-existing shipped 10 mm shell (apply_para_shell.py) —
+  # no parameter chosen on Visual Lab.
+  V4_shell10:   {epi: "fat & P",        para: "(pred_para | pred_epi) & (M | shell(P, 10mm)) & ~P"}
+
+metrics: [dice_epi, dice_para, dice_tat, recall, precision, volume_mL]   # TAT = epi|para, comparable to Commandeur 2018 (0.905)
+seed: 42
